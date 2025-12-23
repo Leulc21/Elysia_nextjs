@@ -1,0 +1,26 @@
+// prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"  // Fixed provider name
+  output   = "../lib/generated/prisma"  // Changed to lib folder
+}
+
+datasource db {
+  provider = "postgresql" // Changed to PostgreSQL
+  
+}
+
+generator prismabox {
+  provider = "prismabox"
+  typeboxImportDependencyName = "elysia"
+  typeboxImportVariableName = "t"
+  inputModel = true
+  output   = "../lib/generated/prismabox"  // Changed to lib folder
+}
+
+model Todo {
+  id        Int      @id @default(autoincrement())
+  title     String
+  completed Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
